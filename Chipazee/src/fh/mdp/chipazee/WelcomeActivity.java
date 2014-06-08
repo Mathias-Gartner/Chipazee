@@ -8,6 +8,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class WelcomeActivity extends Activity {
 
@@ -59,5 +63,8 @@ public class WelcomeActivity extends Activity {
             return rootView;
         }
     }
-
+    
+    public void goGPlay(View view){
+    	setContentView(R.layout.play);
+   }
 }

@@ -1,0 +1,99 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.app1.MainActivity$PlaceholderFragment" >
+
+    <TableLayout
+        android:id="@+id/TableLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+	<TableRow
+	    android:focusable="true" >
+
+        <TextView
+            style="?android:attr/textAppearanceLarge"
+            android:layout_height="95dp"
+            android:layout_width ="90dp" 
+            android:layout_margin="3dp"
+            android:background="@color/wine"
+            android:text="1" />
+
+        <TextView
+            style="?android:attr/textAppearanceLarge"
+            android:layout_height="95dp"
+            android:layout_width ="90dp"
+            android:layout_margin="3dp"
+            android:background="@color/red"
+            android:text="2" />
+
+        <TextView
+            style="?android:attr/textAppearanceLarge"
+            android:layout_height="95dp"
+            android:layout_width ="90dp"
+            android:layout_margin="3dp"
+            android:background="@color/orange"
+            android:text="3" />
+
+	</TableRow>
+
+	<TableRow
+	    android:focusable="true" >
+
+        <TextView
+            style="?android:attr/textAppearanceLarge"
+            android:layout_height="100dp"
+            android:layout_margin="3dp"
+            android:background="@color/wine"
+            android:text="4" />
+
+        <TextView
+            style="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="3dp"
+            android:background="@color/red"
+            android:text="5" />
+
+        <TextView
+            style="?android:attr/textAppearanceLarge"
+            android:layout_height="match_parent"
+            android:layout_margin="3dp"
+            android:background="@color/orange"
+            android:text="6" />
+	</TableRow>
+	<TableRow
+	    android:focusable="true" >
+
+        <TextView
+            style="?android:attr/textAppearanceLarge"
+            android:layout_height="95dp"
+            android:layout_width ="90dp"
+            android:layout_margin="3dp"
+            android:background="@color/wine"
+            android:text="7" />
+
+        <TextView
+            style="?android:attr/textAppearanceLarge"
+            android:layout_height="match_parent"
+            android:layout_margin="3dp"
+            android:background="@color/red"
+            android:text="8" />
+
+        <TextView
+            style="?android:attr/textAppearanceLarge"
+            android:layout_height="match_parent"
+            android:layout_margin="3dp"
+            android:background="@color/orange"
+            android:text="9" />
+
+	</TableRow>
+    </TableLayout>
+
+</RelativeLayout>

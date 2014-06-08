@@ -1,16 +1,18 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="fh.mdp.chipazee.WelcomeActivity$PlaceholderFragment" >
+    android:orientation="vertical" >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+        </com.google.android.gms.common.SignInButton>
 
         <Button
             android:id="@+id/button1"
@@ -23,9 +25,9 @@
             android:background="@color/green"
             android:minHeight="68dp"
             android:minWidth="84dip"
+            android:onClick="goGPlay"
             android:text="Google Play"
-            android:textColor="@color/white" 
-            android:onClick="goGPlay"/>
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/Button01"
@@ -38,10 +40,9 @@
             android:layout_marginTop="49dp"
             android:background="@color/wine"
             android:minHeight="68dp"
+            android:onClick="goWifi"
             android:text="Via Wifi"
-            android:textColor="@color/white"
-            android:onClick="goWifi" />
+            android:textColor="@color/white" />
     </RelativeLayout>
 
-
-</RelativeLayout>
+</LinearLayout>
