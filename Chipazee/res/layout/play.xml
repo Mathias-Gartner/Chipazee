@@ -19,27 +19,30 @@
 
         <TextView
             style="?android:attr/textAppearanceLarge"
+            android:id="@+id/silver"
             android:layout_height="95dp"
             android:layout_width ="90dp" 
             android:layout_margin="3dp"
-            android:background="@color/wine"
-            android:text="1" />
+            android:background="@color/silver"
+             />
 
         <TextView
             style="?android:attr/textAppearanceLarge"
+            android:id="@+id/darkblue"
             android:layout_height="95dp"
             android:layout_width ="90dp"
             android:layout_margin="3dp"
-            android:background="@color/red"
-            android:text="2" />
+            android:background="@color/darkblue"
+			 />
 
         <TextView
             style="?android:attr/textAppearanceLarge"
+            android:id="@+id/black"
             android:layout_height="95dp"
             android:layout_width ="90dp"
             android:layout_margin="3dp"
-            android:background="@color/orange"
-            android:text="3" />
+            android:background="@color/black"
+             />
 
 	</TableRow>
 
@@ -48,52 +51,67 @@
 
         <TextView
             style="?android:attr/textAppearanceLarge"
+            android:id="@+id/green"
             android:layout_height="100dp"
             android:layout_margin="3dp"
-            android:background="@color/wine"
-            android:text="4" />
+            android:background="@color/green"
+             />
 
         <TextView
             style="?android:attr/textAppearanceLarge"
+            android:id="@+id/violet"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="3dp"
-            android:background="@color/red"
-            android:text="5" />
+            android:background="@color/violet"
+             />
 
         <TextView
             style="?android:attr/textAppearanceLarge"
+            android:id="@+id/yellow"
             android:layout_height="match_parent"
             android:layout_margin="3dp"
-            android:background="@color/orange"
-            android:text="6" />
+            android:background="@color/yellow"
+            />
 	</TableRow>
 	<TableRow
 	    android:focusable="true" >
 
         <TextView
             style="?android:attr/textAppearanceLarge"
+            android:id="@+id/wine"
             android:layout_height="95dp"
             android:layout_width ="90dp"
             android:layout_margin="3dp"
             android:background="@color/wine"
-            android:text="7" />
+           />
 
         <TextView
             style="?android:attr/textAppearanceLarge"
+            android:id="@+id/red"
             android:layout_height="match_parent"
             android:layout_margin="3dp"
             android:background="@color/red"
-            android:text="8" />
+            />
 
         <TextView
             style="?android:attr/textAppearanceLarge"
+            android:id="@+id/orange"
             android:layout_height="match_parent"
             android:layout_margin="3dp"
             android:background="@color/orange"
-            android:text="9" />
+            android:onClick=""/>
 
 	</TableRow>
     </TableLayout>
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/TableLayout1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp"
+        android:text="Done" />
 
 </RelativeLayout>

@@ -22,4 +22,8 @@
     <color name="yellow">#FFFF00</color>
     <color name="white">#FFFFFF</color>
     <color name="green">#5FB404</color>
+    <color name="black">#000000</color>
+    <color name="darkblue">#080E4B</color>
+    <color name="silver">#6E6E6E</color>
+    <color name="violet">#8904B1</color>
 </resources>
