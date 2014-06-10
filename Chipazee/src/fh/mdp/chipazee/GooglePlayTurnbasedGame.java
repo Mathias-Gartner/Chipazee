@@ -143,6 +143,7 @@ public class GooglePlayTurnbasedGame implements TurnbasedGame, GameHelperListene
 	{
 		Intent intent = Games.TurnBasedMultiplayer.getSelectOpponentsIntent(mHelper.getApiClient(), 1, playerCount, true);
         mActivity.startActivityForResult(intent, RC_NEW_GAME);
+        
 	}
 	
 	@Override

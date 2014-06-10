@@ -26,4 +26,5 @@
     <color name="darkblue">#080E4B</color>
     <color name="silver">#6E6E6E</color>
     <color name="violet">#8904B1</color>
+    <color name="pressed">#E1F5A9</color>
 </resources>
