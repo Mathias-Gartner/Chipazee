@@ -1,7 +1,9 @@
 package fh.mdp.chipazee;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 public class GooglePlayActivity extends BaseGameActivity {
 
@@ -78,10 +80,13 @@ public class GooglePlayActivity extends BaseGameActivity {
 	{
 		if(firstTurn)
 			setContentView(R.layout.play);
+		
 	}
 	
 	public void goDone(View view)
 	{
 		game.takeTurn(game.getmTurn());
 	}
+	
+
 }

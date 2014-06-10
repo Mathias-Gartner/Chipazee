@@ -97,7 +97,8 @@
             android:id="@+id/orange"
             android:layout_height="match_parent"
             android:layout_margin="3dp"
-            android:background="@drawable/selector"
+            android:background="@color/orange"
+            android:clickable="false"
             />
 
 	</TableRow>
