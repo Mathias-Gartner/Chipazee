@@ -15,10 +15,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
-public class GooglePlayTurnBasedGame implements TurnbasedGame, GameHelperListener {
+public class GooglePlayTurnbasedGame implements TurnbasedGame, GameHelperListener {
 	public static final String TAG = "DrawingGooglePlayTurnBasedGames";
 	
 	// For our intents
@@ -28,16 +27,20 @@ public class GooglePlayTurnBasedGame implements TurnbasedGame, GameHelperListene
 	
 	protected GameHelper mHelper = null;
 	protected TurnBasedMatch mMatch = null;
-	protected FragmentActivity mActivity = null;
+	protected BaseGameActivity mActivity = null;
 	protected Turn mTurn = null;
+	protected TurnHandler mTurnHandler = null;
 	
 	
-	public GooglePlayTurnBasedGame(FragmentActivity activity)
+	public GooglePlayTurnbasedGame(BaseGameActivity activity, TurnHandler turnHandler)
 	{
 		if (activity == null)
 			throw new IllegalArgumentException("activity cannot be null");
+		if (turnHandler == null)
+			throw new IllegalArgumentException("turnHandler cannot be null");
 		
 		mActivity = activity;
+		mTurnHandler = turnHandler;
 	}
 	
 	public GameHelper getGameHelper() {
@@ -66,8 +69,13 @@ public class GooglePlayTurnBasedGame implements TurnbasedGame, GameHelperListene
 		mHelper.onStop();
 	}
 
+	@Override
     public void onActivityResult(int request, int response, Intent data) {
-        // TODO: It's VERY IMPORTANT for you to remember to call your superclass.
+        // It's VERY IMPORTANT for you to remember to call your superclass.
+    	
+    	// not needed: we're getting called from our activity
+    	//mActivity.onActivityResult(request, response, data);
+    	
         // BaseGameActivity will not work otherwise.
 		mHelper.onActivityResult(request, response, data);
 
@@ -124,7 +132,8 @@ public class GooglePlayTurnBasedGame implements TurnbasedGame, GameHelperListene
             // Start the match
             Games.TurnBasedMultiplayer.createMatch(mHelper.getApiClient(), tbmc);
 
-            // TODO: callback
+            mTurn = new Turn();
+            mTurnHandler.handleTurn(true);
             //showSpinner();
         }
     }
@@ -146,17 +155,26 @@ public class GooglePlayTurnBasedGame implements TurnbasedGame, GameHelperListene
 	public void updateMatch(TurnBasedMatch match) {
         mMatch = match;
         // Unpack the turn data
-        try
+        
+        byte[] data = mMatch.getData();
+        if (data == null) // if first turn was interrupted and is now being restarted
         {
-        	mTurn = Turn.deserialize(mMatch.getData());
+        	mTurn = new Turn();
         }
-        catch (IllegalArgumentException e)
+        else
         {
-        	showWarning("Game invalid", "The reveived data was not valid. Your game has been aborted.");
-        	cancelMatch();
+	        try
+	        {
+	        	mTurn = Turn.deserialize(mMatch.getData());
+	        }
+	        catch (IllegalArgumentException e)
+	        {
+	        	showWarning("Game invalid", "The reveived data was not valid. Your game has been aborted.");
+	        	cancelMatch();
+	        	return;
+	        }
         }
         
-
         int status = match.getStatus();
         int turnStatus = match.getTurnStatus();
 
@@ -208,7 +226,7 @@ public class GooglePlayTurnBasedGame implements TurnbasedGame, GameHelperListene
                         "Still waiting for invitations.\n\nBe patient!");
 
             case TurnBasedMatch.MATCH_TURN_STATUS_MY_TURN:
-            	//TODO: callback
+            	mTurnHandler.handleTurn(false);
             	
                 /*if (mTurnData.replayTurn != null
                         && mTurnData.guessingTurn.guessedWord == -1) {
@@ -278,11 +296,25 @@ public class GooglePlayTurnBasedGame implements TurnbasedGame, GameHelperListene
 
 	}
 
-
 	@Override
 	public void unlockAchievement(String achievementID) {
 		Games.Achievements.unlock(mHelper.getApiClient(), achievementID);
 	}
+
+	@Override
+	public boolean isSignedIn() {
+        return mHelper.isSignedIn();
+    }
+
+	@Override
+    public void beginUserInitiatedSignIn() {
+        mHelper.beginUserInitiatedSignIn();
+    }
+
+	@Override
+    public void signOut() {
+        mHelper.signOut();
+    }
 	
 	@Override
 	public void onSignInFailed() {

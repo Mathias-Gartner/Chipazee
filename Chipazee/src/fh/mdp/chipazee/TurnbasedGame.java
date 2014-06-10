@@ -1,5 +1,7 @@
 package fh.mdp.chipazee;
 
+import android.content.Intent;
+
 public interface TurnbasedGame {
 	void GameActivityCreated();
 	void GameActivityStarted();
@@ -13,4 +15,10 @@ public interface TurnbasedGame {
 	void cancelMatch();
 	void leaveMatch();
 	void unlockAchievement(String achievementID);
+	
+	void signOut();
+	void beginUserInitiatedSignIn();
+	boolean isSignedIn();
+	
+	void onActivityResult(int request, int response, Intent data);
 }

@@ -1,7 +1,9 @@
 package fh.mdp.chipazee;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -65,6 +67,29 @@ public class WelcomeActivity extends Activity {
     }
     
     public void goGPlay(View view){
-    	setContentView(R.layout.play);
-   }
+    	//setContentView(R.layout.play);
+    	
+    	Intent intent = new Intent(this, GooglePlayActivity.class);//("fh.mdp.chipazee.GooglePlayActivity");
+    	startActivity(intent);
+    }
+    
+    public void goWifi(View view) {
+    	showWarning("Not supported", "Playing via WiFi Direct is not yet supported.");
+    }
+    
+    public void showWarning(String title, String message) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+        // set title
+        alertDialogBuilder.setTitle(title).setMessage(message);
+
+        // set dialog message
+        alertDialogBuilder.setCancelable(false).setPositiveButton("OK", null);
+
+        // create alert dialog
+        AlertDialog mAlertDialog = alertDialogBuilder.create();
+
+        // show it
+        mAlertDialog.show();
+    }
 }

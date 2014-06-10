@@ -11,9 +11,22 @@
         <com.google.android.gms.common.SignInButton
             android:id="@+id/sign_in_button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:onClick="signIn" >
         </com.google.android.gms.common.SignInButton>
 
+        <Button
+            android:id="@+id/sign_out_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"
+            android:onClick="signOut" >
+        </Button>
+        
         <Button
             android:id="@+id/button1"
             style="@color/white"
@@ -25,8 +38,8 @@
             android:background="@color/green"
             android:minHeight="68dp"
             android:minWidth="84dip"
-            android:onClick="goGPlay"
-            android:text="Google Play"
+            android:onClick="goNewGame"
+            android:text="@string/NewGame"
             android:textColor="@color/white" />
 
         <Button
@@ -40,8 +53,8 @@
             android:layout_marginTop="49dp"
             android:background="@color/wine"
             android:minHeight="68dp"
-            android:onClick="goWifi"
-            android:text="Via Wifi"
+            android:onClick="goCheckGames"
+            android:text="@string/ViewGames"
             android:textColor="@color/white" />
     </RelativeLayout>
 

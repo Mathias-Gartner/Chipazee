@@ -6,4 +6,7 @@
     <string name="action_settings">Settings</string>
     
 	<string name="achievement_started_a_game">id</string>
+	<string name="GooglePlayActivityLabel">Play with Google Play Services</string>
+	<string name="NewGame">New Game</string>
+	<string name="ViewGames">View Games</string>
 </resources>
