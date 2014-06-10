@@ -22,7 +22,7 @@
             android:layout_height="95dp"
             android:layout_width ="90dp" 
             android:layout_margin="3dp"
-            android:background="@color/silver"/>
+            android:background="@drawable/silver"/>
 		
         <Button
             style="?android:attr/textAppearanceLarge"
@@ -30,7 +30,7 @@
             android:layout_height="95dp"
             android:layout_width ="90dp"
             android:layout_margin="3dp"
-            android:background="@color/darkblue"
+            android:background="@drawable/darkblue"
 			 />
 
         <Button
@@ -39,7 +39,7 @@
             android:layout_height="95dp"
             android:layout_width ="90dp"
             android:layout_margin="3dp"
-            android:background="@color/black"
+            android:background="@drawable/black"
              />
 
 	</TableRow>
@@ -52,7 +52,7 @@
             android:id="@+id/green"
             android:layout_height="100dp"
             android:layout_margin="3dp"
-            android:background="@color/green"
+            android:background="@drawable/green"
              />
 
         <Button
@@ -61,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="3dp"
-            android:background="@color/violet"
+            android:background="@drawable/violet"
              />
 
         <Button
@@ -69,7 +69,7 @@
             android:id="@+id/yellow"
             android:layout_height="match_parent"
             android:layout_margin="3dp"
-            android:background="@color/yellow"
+            android:background="@drawable/yellow"
             />
 	</TableRow>
 	<TableRow
@@ -81,7 +81,7 @@
             android:layout_height="95dp"
             android:layout_width ="90dp"
             android:layout_margin="3dp"
-            android:background="@color/wine"
+            android:background="@drawable/wine"
            />
 
         <Button
@@ -89,7 +89,7 @@
             android:id="@+id/red"
             android:layout_height="match_parent"
             android:layout_margin="3dp"
-            android:background="@color/red"
+            android:background="@drawable/red"
             />
 
         <Button
@@ -97,8 +97,7 @@
             android:id="@+id/orange"
             android:layout_height="match_parent"
             android:layout_margin="3dp"
-            android:background="@color/orange"
-            android:clickable="false"
+            android:background="@drawable/orange"
             />
 
 	</TableRow>
