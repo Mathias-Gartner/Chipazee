@@ -10,6 +10,7 @@ public interface TurnbasedGame {
 	void startNewGame(int maxPlayers);
 	void checkGames();
 	
+	public Turn getmTurn();
 	void takeTurn(Turn turn);
 	void finishMatch();
 	void cancelMatch();

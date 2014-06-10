@@ -43,6 +43,10 @@ public class GooglePlayTurnbasedGame implements TurnbasedGame, GameHelperListene
 		mTurnHandler = turnHandler;
 	}
 	
+	public Turn getmTurn() {
+		return mTurn;
+	}
+
 	public GameHelper getGameHelper() {
         if (mHelper == null) {
             mHelper = new GameHelper(mActivity, GameHelper.CLIENT_GAMES);

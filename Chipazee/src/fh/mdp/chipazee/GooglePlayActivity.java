@@ -79,4 +79,9 @@ public class GooglePlayActivity extends BaseGameActivity {
 		if(firstTurn)
 			setContentView(R.layout.play);
 	}
+	
+	public void goDone(View view)
+	{
+		game.takeTurn(game.getmTurn());
+	}
 }

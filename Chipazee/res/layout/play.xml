@@ -110,6 +110,7 @@
         android:layout_below="@+id/TableLayout1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="26dp"
-        android:text="@+string/done" />
+        android:text="@+string/done"
+        android:onClick="goDone" />
 
 </RelativeLayout>
