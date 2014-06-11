@@ -89,9 +89,9 @@ public class GooglePlayActivity extends BaseGameActivity {
 		Iterator<Integer> itLast = game.getmTurn().colours.iterator();
 
 		boolean ok = false;
-		if (attempt.size() == game.getmTurn().colours.size()) {
+		if (attempt.size() == game.getmTurn().colours.size() + 1) {
 			int count = 0;
-			while (itAttempt.hasNext()) {
+			while (itLast.hasNext()) {
 				if (itAttempt.next() != itLast.next())
 					break;
 
@@ -102,12 +102,13 @@ public class GooglePlayActivity extends BaseGameActivity {
 		}
 
 		if (ok) {
+			game.getmTurn().colours.add(attempt.peekLast());
 			showWarning("Success!", "Your attempt was fine, this time.");
 		} else {
 			showWarning("Failure!", "Your attempt was futile. You lost.");
 		}
 
-		game.takeTurn(game.getmTurn()); // TODO End game if not OK?
+		game.takeTurn(game.getmTurn()); // TODO End game if not OK? We could let next player try.
 	}
 
 	private Deque<Integer> attempt = new ArrayDeque<Integer>();
