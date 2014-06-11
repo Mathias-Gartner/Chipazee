@@ -3,12 +3,18 @@ package fh.mdp.chipazee;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.Result;
+import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.games.Games;
+import com.google.android.gms.games.GamesStatusCodes;
 import com.google.android.gms.games.multiplayer.Multiplayer;
 import com.google.android.gms.games.multiplayer.Participant;
 import com.google.android.gms.games.multiplayer.realtime.RoomConfig;
 import com.google.android.gms.games.multiplayer.turnbased.TurnBasedMatch;
 import com.google.android.gms.games.multiplayer.turnbased.TurnBasedMatchConfig;
+import com.google.android.gms.games.multiplayer.turnbased.TurnBasedMultiplayer;
+import com.google.android.gms.games.multiplayer.turnbased.TurnBasedMultiplayer.InitiateMatchResult;
 import com.google.example.games.basegameutils.GameHelper;
 import com.google.example.games.basegameutils.GameHelper.GameHelperListener;
 
@@ -136,11 +142,41 @@ public class GooglePlayTurnbasedGame implements TurnbasedGame,
 					.setAutoMatchCriteria(autoMatchCriteria).build();
 
 			// Start the match
-			Games.TurnBasedMultiplayer
+			PendingResult<InitiateMatchResult> f = Games.TurnBasedMultiplayer
 					.createMatch(mHelper.getApiClient(), tbmc);
 
-			mTurn = new Turn();
-			mTurnHandler.handleTurn(true);
+		    f.setResultCallback(new ResultCallback<InitiateMatchResult>() {
+
+		        @Override
+		        public void onResult(TurnBasedMultiplayer.InitiateMatchResult result) {
+		            // Check if the status code is not success;
+		            if (result.getStatus().getStatusCode() != GamesStatusCodes.STATUS_OK) {
+		                showWarning("Error", "Cannot start match. Error code: " + result.getStatus().getStatusCode());
+		                return;
+		            }
+
+		            TurnBasedMatch match = result.getMatch();
+            		mMatch = match;
+            		
+		            // If this player is not the first player in this match, continue.
+		            if (match.getData() != null) {
+		                mTurnHandler.handleTurn(true);
+		                return;
+		            }
+
+		            // Otherwise, this is the first player. Initialize the game state.
+		            Turn turn = new Turn();
+		            mTurn = turn;
+		            takeTurn(turn);
+
+		            // Let the player take the first turn
+		            mTurnHandler.handleTurn(true);
+		        }
+		    }
+);
+			
+			/*mTurn = new Turn();
+			mTurnHandler.handleTurn(true);*/
 			// showSpinner();
 		}
 	}
@@ -288,8 +324,7 @@ public class GooglePlayTurnbasedGame implements TurnbasedGame,
 					"An error occoured and your turn can not be finished.");
 		else
 			Games.TurnBasedMultiplayer.takeTurn(mHelper.getApiClient(), mMatch
-					.getMatchId(), data, getNextParticipant()
-					.getParticipantId());
+					.getMatchId(), data, getNextParticipant().getParticipantId());
 	}
 
 	@Override

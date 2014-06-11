@@ -84,7 +84,7 @@ public class GooglePlayActivity extends BaseGameActivity {
 		// TODO Since declaring them in XML was not
 		// working, I got desparate, no idea if this
 		// will work.
-		addButtonListeners();
+		//addButtonListeners();
 		
 		if (!firstTurn) {
 			myTurn.turnNumber += 1;
@@ -111,15 +111,14 @@ public class GooglePlayActivity extends BaseGameActivity {
 		if (ok) {
 			game.getTurn().colours.add(attempt.peekLast());
 			showWarning("Success!", "Your attempt was fine, this time.");
+			game.takeTurn(game.getTurn()); // TODO End game if not OK? We could let next player try.
 		} else {
 			showWarning("Failure!", "Your attempt was futile. You lost.");
 			game.finishMatch();
-			attempt.clear();
-			return;
 		}
 
 		attempt.clear();
-		game.takeTurn(game.getTurn()); // TODO End game if not OK? We could let next player try.
+		setContentView(R.layout.login);
 	}
 
 	private Deque<Integer> attempt = new ArrayDeque<Integer>();
@@ -185,6 +184,12 @@ public class GooglePlayActivity extends BaseGameActivity {
 		});
 	}
 
+	public void colorClicked(View view)
+	{
+		int number = Integer.parseInt(view.getTag().toString());
+		addColour(number);
+	}
+	
 	private void showWarning(String title, String message) { // TODO Copied from
 																// welcomeActivity.
 		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);

@@ -22,6 +22,8 @@
             android:layout_height="95dp"
             android:layout_width ="90dp" 
             android:layout_margin="3dp"
+            android:tag="1"
+            android:onClick="colorClicked"
             android:background="@drawable/silver"/>
 		
         <Button
@@ -30,6 +32,8 @@
             android:layout_height="95dp"
             android:layout_width ="90dp"
             android:layout_margin="3dp"
+            android:tag="2"
+            android:onClick="colorClicked"
             android:background="@drawable/darkblue"
 			 />
 
@@ -39,6 +43,8 @@
             android:layout_height="95dp"
             android:layout_width ="90dp"
             android:layout_margin="3dp"
+            android:tag="3"
+            android:onClick="colorClicked"
             android:background="@drawable/black"
              />
 
@@ -52,6 +58,8 @@
             android:id="@+id/b4"
             android:layout_height="100dp"
             android:layout_margin="3dp"
+            android:tag="4"
+            android:onClick="colorClicked"
             android:background="@drawable/green"
              />
 
@@ -61,6 +69,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="3dp"
+            android:tag="5"
+            android:onClick="colorClicked"
             android:background="@drawable/violet"
              />
 
@@ -69,6 +79,8 @@
             android:id="@+id/b6"
             android:layout_height="match_parent"
             android:layout_margin="3dp"
+            android:tag="6"
+            android:onClick="colorClicked"
             android:background="@drawable/yellow"
             />
 	</TableRow>
@@ -81,6 +93,8 @@
             android:layout_height="95dp"
             android:layout_width ="90dp"
             android:layout_margin="3dp"
+            android:tag="7"
+            android:onClick="colorClicked"
             android:background="@drawable/wine"
            />
 
@@ -89,6 +103,8 @@
             android:id="@+id/b8"
             android:layout_height="match_parent"
             android:layout_margin="3dp"
+            android:tag="8"
+            android:onClick="colorClicked"
             android:background="@drawable/red"
             />
 
@@ -97,6 +113,8 @@
             android:id="@+id/b9"
             android:layout_height="match_parent"
             android:layout_margin="3dp"
+            android:tag="9"
+            android:onClick="colorClicked"
             android:background="@drawable/orange"
             />
 
