@@ -35,12 +35,19 @@ public class GooglePlayActivity extends BaseGameActivity {
 		super.onStart();
 		game.GameActivityStarted();
 
+		View signInButton = findViewById(R.id.sign_in_button);
+		View signOutButton = findViewById(R.id.sign_out_button);
+		
 		if (game.isSignedIn()) {
-			findViewById(R.id.sign_in_button).setVisibility(View.GONE);
-			findViewById(R.id.sign_out_button).setVisibility(View.VISIBLE);
+			if (signInButton != null)
+				signInButton.setVisibility(View.GONE);
+			if (signOutButton != null)
+				signOutButton.setVisibility(View.VISIBLE);
 		} else {
-			findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
-			findViewById(R.id.sign_out_button).setVisibility(View.GONE);
+			if (signInButton != null)
+				signInButton.setVisibility(View.VISIBLE);
+			if (signOutButton != null)
+				signOutButton.setVisibility(View.GONE);
 		}
 	}
 
@@ -71,25 +78,25 @@ public class GooglePlayActivity extends BaseGameActivity {
 	}
 
 	public void doTurn(boolean firstTurn) {
-		Turn myTurn = game.getmTurn();
+		Turn myTurn = game.getTurn();
 
-		if (firstTurn) {
-			setContentView(R.layout.play);
-			// TODO Since declaring them in XML was not
-			// working, I got desparate, no idea if this
-			// will work.
-			addButtonListeners();
-		} else {
+		setContentView(R.layout.play);
+		// TODO Since declaring them in XML was not
+		// working, I got desparate, no idea if this
+		// will work.
+		addButtonListeners();
+		
+		if (!firstTurn) {
 			myTurn.turnNumber += 1;
 		}
 	}
 
 	public void goDone(View view) {
 		Iterator<Integer> itAttempt = attempt.iterator();
-		Iterator<Integer> itLast = game.getmTurn().colours.iterator();
+		Iterator<Integer> itLast = game.getTurn().colours.iterator();
 
 		boolean ok = false;
-		if (attempt.size() == game.getmTurn().colours.size() + 1) {
+		if (attempt.size() == game.getTurn().colours.size() + 1) {
 			int count = 0;
 			while (itLast.hasNext()) {
 				if (itAttempt.next() != itLast.next())
@@ -97,19 +104,22 @@ public class GooglePlayActivity extends BaseGameActivity {
 
 				count += 1;
 			}
-			if (count == game.getmTurn().colours.size())
+			if (count == game.getTurn().colours.size())
 				ok = true;
 		}
 
 		if (ok) {
-			game.getmTurn().colours.add(attempt.peekLast());
+			game.getTurn().colours.add(attempt.peekLast());
 			showWarning("Success!", "Your attempt was fine, this time.");
 		} else {
 			showWarning("Failure!", "Your attempt was futile. You lost.");
+			game.finishMatch();
+			attempt.clear();
+			return;
 		}
 
 		attempt.clear();
-		game.takeTurn(game.getmTurn()); // TODO End game if not OK? We could let next player try.
+		game.takeTurn(game.getTurn()); // TODO End game if not OK? We could let next player try.
 	}
 
 	private Deque<Integer> attempt = new ArrayDeque<Integer>();

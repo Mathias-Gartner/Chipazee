@@ -44,7 +44,7 @@ public class GooglePlayTurnbasedGame implements TurnbasedGame,
 		mTurnHandler = turnHandler;
 	}
 
-	public Turn getmTurn() {
+	public Turn getTurn() {
 		return mTurn;
 	}
 
