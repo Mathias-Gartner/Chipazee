@@ -15,6 +15,8 @@ import java.util.Deque;
 public class Turn implements Serializable {
 
 	public int turnNumber = 1;
+	
+	public Deque<Integer> colours = new ArrayDeque<Integer>();
 
 	public void addColor(Colors color) {
 		colors.add(color);

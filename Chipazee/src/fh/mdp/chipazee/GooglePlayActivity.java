@@ -1,7 +1,13 @@
 package fh.mdp.chipazee;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Iterator;
+
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 public class GooglePlayActivity extends BaseGameActivity {
 
@@ -11,6 +17,10 @@ public class GooglePlayActivity extends BaseGameActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
+
+		addButtonListeners(); // TODO Since declaring them in XML was not
+								// working, I got desparate, no idea if this
+								// will work.
 
 		game = new GooglePlayTurnbasedGame(this, new TurnHandler() {
 
@@ -75,8 +85,108 @@ public class GooglePlayActivity extends BaseGameActivity {
 	}
 
 	public void goDone(View view) {
-		game.takeTurn(game.getmTurn());
-	}
-	
+		Iterator<Integer> itAttempt = attempt.iterator();
+		Iterator<Integer> itLast = game.getmTurn().colours.iterator();
 
+		boolean ok = false;
+		if (attempt.size() == game.getmTurn().colours.size()) {
+			int count = 0;
+			while (itAttempt.hasNext()) {
+				if (itAttempt.next() != itLast.next())
+					break;
+
+				count += 1;
+			}
+			if (count == game.getmTurn().colours.size())
+				ok = true;
+		}
+
+		if (ok) {
+			showWarning("Success!", "Your attempt was fine, this time.");
+		} else {
+			showWarning("Failure!", "Your attempt was futile. You lost.");
+		}
+
+		game.takeTurn(game.getmTurn()); // TODO End game if not OK?
+	}
+
+	private Deque<Integer> attempt = new ArrayDeque<Integer>();
+
+	private void addColour(int i) {
+		attempt.add(i);
+	}
+
+	private void addButtonListeners() {
+		Button b1 = (Button) findViewById(R.id.b1);
+		b1.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				addColour(1);
+			}
+		});
+		Button b2 = (Button) findViewById(R.id.b2);
+		b1.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				addColour(2);
+			}
+		});
+		Button b3 = (Button) findViewById(R.id.b3);
+		b1.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				addColour(3);
+			}
+		});
+		Button b4 = (Button) findViewById(R.id.b4);
+		b1.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				addColour(4);
+			}
+		});
+		Button b5 = (Button) findViewById(R.id.b5);
+		b1.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				addColour(5);
+			}
+		});
+		Button b6 = (Button) findViewById(R.id.b6);
+		b1.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				addColour(6);
+			}
+		});
+		Button b7 = (Button) findViewById(R.id.b7);
+		b1.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				addColour(7);
+			}
+		});
+		Button b8 = (Button) findViewById(R.id.b8);
+		b1.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				addColour(8);
+			}
+		});
+		Button b9 = (Button) findViewById(R.id.b9);
+		b1.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				addColour(9);
+			}
+		});
+	}
+
+	private void showWarning(String title, String message) { // TODO Copied from
+																// welcomeActivity.
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+		// set title
+		alertDialogBuilder.setTitle(title).setMessage(message);
+
+		// set dialog message
+		alertDialogBuilder.setCancelable(false).setPositiveButton("OK", null);
+
+		// create alert dialog
+		AlertDialog mAlertDialog = alertDialogBuilder.create();
+
+		// show it
+		mAlertDialog.show();
+	}
 }
