@@ -18,10 +18,6 @@ public class GooglePlayActivity extends BaseGameActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
 
-		addButtonListeners(); // TODO Since declaring them in XML was not
-								// working, I got desparate, no idea if this
-								// will work.
-
 		game = new GooglePlayTurnbasedGame(this, new TurnHandler() {
 
 			@Override
@@ -79,6 +75,10 @@ public class GooglePlayActivity extends BaseGameActivity {
 
 		if (firstTurn) {
 			setContentView(R.layout.play);
+			// TODO Since declaring them in XML was not
+			// working, I got desparate, no idea if this
+			// will work.
+			addButtonListeners();
 		} else {
 			myTurn.turnNumber += 1;
 		}
