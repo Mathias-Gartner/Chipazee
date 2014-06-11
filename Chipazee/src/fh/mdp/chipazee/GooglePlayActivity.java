@@ -108,6 +108,7 @@ public class GooglePlayActivity extends BaseGameActivity {
 			showWarning("Failure!", "Your attempt was futile. You lost.");
 		}
 
+		attempt.clear();
 		game.takeTurn(game.getmTurn()); // TODO End game if not OK? We could let next player try.
 	}
 
