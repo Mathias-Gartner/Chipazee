@@ -324,7 +324,7 @@ public class GooglePlayTurnbasedGame implements TurnbasedGame,
 					"An error occoured and your turn can not be finished.");
 		else
 			Games.TurnBasedMultiplayer.takeTurn(mHelper.getApiClient(), mMatch
-					.getMatchId(), data, getNextParticipant().getParticipantId());
+					.getMatchId(), data, getNextParticipantId());
 	}
 
 	@Override
@@ -342,7 +342,7 @@ public class GooglePlayTurnbasedGame implements TurnbasedGame,
 	@Override
 	public void leaveMatch() {
 		Games.TurnBasedMultiplayer.leaveMatchDuringTurn(mHelper.getApiClient(),
-				mMatch.getMatchId(), getNextParticipant().getParticipantId());
+				mMatch.getMatchId(), getNextParticipantId());
 
 	}
 
@@ -411,8 +411,17 @@ public class GooglePlayTurnbasedGame implements TurnbasedGame,
 				.getCurrentPlayerId(mHelper.getApiClient()));
 	}
 
-	public Participant getNextParticipant() {
-		int myIndex;
+	private boolean first = true;
+	
+	public String getNextParticipantId() {
+		if (first)
+		{	
+			first = false;
+			return mMatch.getParticipants().get(0).getParticipantId();
+		}
+		else
+			return null;
+		/*int myIndex;
 		for (myIndex = 0; myIndex < mMatch.getParticipants().size(); myIndex++) {
 			Participant p = mMatch.getParticipants().get(myIndex);
 			if (p.getPlayer() != null
@@ -425,6 +434,6 @@ public class GooglePlayTurnbasedGame implements TurnbasedGame,
 		if (myIndex >= mMatch.getParticipants().size())
 			myIndex = 0;
 
-		return mMatch.getParticipants().get(myIndex);
+		return mMatch.getParticipants().get(myIndex);*/
 	}
 }
